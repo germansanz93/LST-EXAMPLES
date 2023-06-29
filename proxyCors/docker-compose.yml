@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  proxycors:
+    image: nginx:latest
+    volumes: 
+      - '/etc/nginx/conf.d/:/etc/nginx/conf.d/'
+    ports: 
+      - 8081:80
+    extra_hosts: 
+      - "host.docker.internal:host-gateway"
+ 
