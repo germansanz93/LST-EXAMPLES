@@ -5,23 +5,23 @@
     "answers": [
       {
         "answer": "Wiki markup",
-        "correct": False,
-        "feedback": "False."
+        "correct": false,
+        "feedback": "false."
       },
       {
         "answer": "SVG",
-        "correct": False,
-        "feedback": "False."
+        "correct": false,
+        "feedback": "false."
       },
       {
         "answer": "Markdown",
-        "correct": True,
+        "correct": true,
         "feedback": "Correct."
       },
       {
         "answer": "Rich Text",
-        "correct": False,
-        "feedback": "False."
+        "correct": false,
+        "feedback": "false."
       }
     ]
   },
@@ -31,23 +31,23 @@
     "answers": [
       {
         "answer": "Wiki markup",
-        "correct": False,
-        "feedback": "False."
+        "correct": false,
+        "feedback": "false."
       },
       {
         "answer": "SVG",
-        "correct": False,
-        "feedback": "False."
+        "correct": false,
+        "feedback": "false."
       },
       {
         "answer": "Markdown",
-        "correct": True,
+        "correct": true,
         "feedback": "Correct."
       },
       {
         "answer": "Rich Text",
-        "correct": False,
-        "feedback": "False."
+        "correct": false,
+        "feedback": "false."
       }
     ]
   }
