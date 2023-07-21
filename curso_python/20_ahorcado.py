@@ -16,20 +16,20 @@ El juego termina cuando:
 from random import random
 from math import floor
 
-MENU_OPTIONS = ["Cargar palabras", "jugar", "salir"]
+MENU_OPTIONS = ["Cargar palabras", "Jugar", "Salir"]
 FILENAME = "words.txt"
 MAX_ALLOWED_ERRORS = 5
 
 def show_menu():
     for i in range(len(MENU_OPTIONS)):
         print(f"{i} - {MENU_OPTIONS[i]}")
-    option = input("Seleccione una opcion: ")
+    option = input("Ingrese una opcion: ")
     return option
 
 def add_words():
     words = []
     while(True):
-        word = input("Ingrese una palabra o presione enter sin escribir caracteres para terminar la carga: ")
+        word = input("Ingrese una palabra o presione enter sin escribir caracteres para finalizar la carga: ")
         if(len(word) > 0):
             words.append(word + "\n")
         else:
@@ -37,60 +37,53 @@ def add_words():
                 file.writelines(words)
             break
 
-def choose_random_element(list):
+def choose_random_word(list):
     length = len(list)
-    rand_index = floor(random() * (length))
+    rand_index = floor(random() * length)
     return list[rand_index]
 
-def print_actual_status(attempts, choosen_word_letters, choosen_word):
+def print_actual_status(choosen_word, attempts, choosen_word_letters):
     result = ""
     for letter in choosen_word:
         if(letter in attempts):
             result += letter
         else:
             result += "_"
-    print(f"intentos actuales: {attempts}")
-    print(f"errores: {attempts.difference(choosen_word_letters)}")
+    if(len(attempts) > 0):
+        print(f"Intentos actuales: {attempts}")
+        print(f"Errores: {attempts.difference(choosen_word_letters)}")
     print(result)
 
 def play_game():
     with open(FILENAME) as file:
         words = file.readlines()
-    choosen_word = choose_random_element(words).lower().strip()
+    choosen_word = choose_random_word(words).lower().strip()
     choosen_word_letters = set()
     for letter in choosen_word:
         choosen_word_letters.add(letter)
     attempts = set()
     while(True):
-        if(len(attempts) > 0):
-            print_actual_status(attempts, choosen_word_letters, choosen_word)
+        print_actual_status(choosen_word, attempts, choosen_word_letters)
         if(len(attempts.difference(choosen_word_letters)) > MAX_ALLOWED_ERRORS):
             print("You lose!")
             return True
         attempt = input("Ingrese una letra: ").lower().strip()
         if(len(attempt) > 1):
-            print("debe ingresar un unico caracter! Intente nuevamente.")
+            print("Debe ingresar un unico caracter! intente nuevamente.")
         else:
-            if(attempt in attempts):
-                print(f"The character {attempt} is already in attempts: {attempts}")
-            else:
-                print("adding attempt", attempt)
-                attempts.add(attempt)
+            attempts.add(attempt)
         if(choosen_word_letters.issubset(attempts)):
-            print(f"You won!, the word was: {choosen_word}")
-            return True 
+            print(f"You won! The word was: {choosen_word}")
+            return True
 
-isFinished = False
 while(True):
-    if(isFinished):
-        break
     option = show_menu()
     if(option == "0"):
         add_words()
     elif(option == "1"):
         isFinished = play_game()
     elif(option == "2"):
-        print("Exiting...")
+        print("Exiting..")
         break
     else:
         print("Ingrese una opcion valida!")
